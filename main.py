@@ -2,6 +2,8 @@ class Ratio:
     def __init__(self, a=1, b=1):
         if b == 0:
             raise ZeroDivisionError("Division By Zero!")
+        elif type(a) != int or type(b) != int:
+            raise ValueError("Enter Integers Only")
         else:
             self.a = a
             self.b = b
@@ -106,4 +108,6 @@ def main():
     print("Init")
     obj = Ratio(2, 6)
 
-main()
+
+if __name__ == '__main__':
+    main()

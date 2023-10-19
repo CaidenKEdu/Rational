@@ -10,6 +10,9 @@ class Ratio:
             self.decimal = self.a/self.b
             self.mixednum = 0
 
+    def __str__(self):
+        return str(self.a) + "/" + str(self.b)
+
     def lowest_terms(self):
         for i in range(2, 100000):
             if self.a % i == 0 and self.b % i == 0:
@@ -107,6 +110,7 @@ class Ratio:
 def main():
     print("Init")
     obj = Ratio(2, 6)
+    print(obj)
 
 
 if __name__ == '__main__':

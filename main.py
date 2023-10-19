@@ -1,3 +1,4 @@
+from math import gcd
 class Ratio:
     def __init__(self, a=1, b=1):
         if b == 0:
@@ -14,11 +15,9 @@ class Ratio:
         return str(self.a) + "/" + str(self.b)
 
     def lowest_terms(self):
-        for i in range(2, 100000):
-            if self.a % i == 0 and self.b % i == 0:
-                self.a = int(self.a / i)
-                self.b = int(self.b / i)
-                break
+        temp = gcd(self.a, self.b)
+        self.a //= temp
+        self.b //= temp
 
     def multiply(self, a):
         if type(a) != Ratio and type(a) != int:

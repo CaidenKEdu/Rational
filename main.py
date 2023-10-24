@@ -55,16 +55,14 @@ class Ratio:
         return Ratio(temp_a, self.b)
 
     def __truediv__(self, a):
-        if type(a) != Ratio and type(a) != int:
-            raise TypeError("Please Enter Required Value")
-        elif type(a) == int:
-            temp_b = self.b * a
-            obj = Ratio(self.a, temp_b)
+        if type(a) == int:
+            return self.__mul__(Ratio(1, a))
         else:
-            temp_a = self.a * a.b
-            temp_b = self.b * a.a
-            obj = Ratio(temp_a, temp_b)
-        return obj
+            return self.__mul__(~a)
+
+    def __rtruediv__(self, a):
+        return Ratio((a*self.b),(self.a))
+
 
     def __mul__(self, a):
         if type(a) != Ratio and type(a) != int:
@@ -131,7 +129,7 @@ def main():
     print("Init")
     obj = Ratio(2, 6)
     obj2 = Ratio(9, 20)
-    temp = 1 - obj2
+    temp = 1 / obj
     print(temp)
 
 

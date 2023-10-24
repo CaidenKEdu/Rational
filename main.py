@@ -47,12 +47,12 @@ class Ratio:
     def __radd__(self, a):
         return self.__add__(a)
 
+    def __sub__(self, a):
+        return self.__add__(-a)
+
     def __rsub__(self, a):
         temp_a = (a*self.b) - (self.a)
         return Ratio(temp_a, self.b)
-
-    def __sub__(self, a):
-        return self.__add__(-a)
 
     def __truediv__(self, a):
         if type(a) != Ratio and type(a) != int:

@@ -23,6 +23,12 @@ class Ratio:
         else:
             if self.b == 1:
                 return str(self.a)
+            if str(self.a)[0] == "-" and str(self.b)[0] == "-":
+                self.a = -self.a
+                self.b = -self.b
+            elif str(self.a)[0] != "-" and str(self.b)[0] == "-":
+                self.a = -self.a
+                self.b = -self.b
             return str(self.a) + "/" + str(self.b)
 
     def __add__(self, a):
@@ -38,18 +44,15 @@ class Ratio:
             obj = Ratio(temp_a, temp_b)
         return obj
 
+    def __radd__(self, a):
+        return self.__add__(a)
+
+    def __rsub__(self, a):
+        temp_a = (a*self.b) - (self.a)
+        return Ratio(temp_a, self.b)
+
     def __sub__(self, a):
-        if type(a) != Ratio and type(a) != int:
-            raise TypeError("Please Enter Required Value")
-        elif type(a) == int:
-            temp_a = self.a - (self.b * a)
-            obj = Ratio(temp_a, self.b)
-        else:
-            temp = self.b
-            temp_b = self.b * a.b
-            temp_a = (self.a * a.b) - (a.a * temp)
-            obj = Ratio(temp_a, temp_b)
-        return obj
+        return self.__add__(-a)
 
     def __truediv__(self, a):
         if type(a) != Ratio and type(a) != int:
@@ -128,7 +131,7 @@ def main():
     print("Init")
     obj = Ratio(2, 6)
     obj2 = Ratio(9, 20)
-    temp = obj + obj2
+    temp = 1 - obj2
     print(temp)
 
 

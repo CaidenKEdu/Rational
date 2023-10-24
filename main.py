@@ -100,6 +100,9 @@ class Ratio:
                 obj.b = None
         return obj
 
+    def __rpow__(self, a, modulo = None):
+        return (a**self.a)**(1/self.b)
+
     def lowest_terms(self):
         temp = gcd(self.a, self.b)
         self.a //= temp
@@ -131,7 +134,7 @@ def main():
     print("Init")
     obj = Ratio(2, 6)
     obj2 = Ratio(9, 20)
-    temp = 2 * obj
+    temp = 2 ** obj
     print(temp)
 
 

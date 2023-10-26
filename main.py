@@ -117,6 +117,7 @@ class Ratio:
 
     def __neg__(self):
         self.a = -self.a
+        self.decimal = self.a / self.b
 
     def __round__(self):
         temp = self
@@ -127,12 +128,14 @@ class Ratio:
         else:
             self.a = temp.mixednum + 1
             self.b = 1
+        self.decimal = self.a / self.b
 
     def __abs__(self):
         if str(self)[0] == "-":
             -self
         else:
             pass
+        self.decimal = self.a/self.b
 
     def convert(self):
         return (self.a / self.b)
@@ -147,16 +150,98 @@ class Ratio:
                     self.mixednum = int(i / self.b)
                     self.a = self.a - int((i / self.b)*self.b)
 
+    def __eq__(self, a):
+        if type(a) != Ratio and type(a) != int:
+            raise TypeError("Please Compare Required Value")
+        elif type == int:
+            if a == self.decimal:
+                return True
+            else:
+                return False
+        else:
+            if a.decimal == self.decimal:
+                return True
+            else:
+                return False
+
+    def __ne__(self, a):
+        if type(a) != Ratio and type(a) != int:
+            raise TypeError("Please Compare Required Value")
+        elif type == int:
+            if a != self.decimal:
+                return True
+            else:
+                return False
+        else:
+            if a.decimal != self.decimal:
+                return True
+            else:
+                return False
+
+    def __lt__(self, a):
+        if type(a) != Ratio and type(a) != int:
+            raise TypeError("Please Compare Required Value")
+        elif type == int:
+            if a > self.decimal:
+                return True
+            else:
+                return False
+        else:
+            if a.decimal > self.decimal:
+                return True
+            else:
+                return False
+
+    def __gt__(self, a):
+        if type(a) != Ratio and type(a) != int:
+            raise TypeError("Please Compare Required Value")
+        elif type == int:
+            if a < self.decimal:
+                return True
+            else:
+                return False
+        else:
+            if a.decimal < self.decimal:
+                return True
+            else:
+                return False
+
+    def __le__(self, a):
+        if type(a) != Ratio and type(a) != int:
+            raise TypeError("Please Compare Required Value")
+        elif type == int:
+            if a >= self.decimal:
+                return True
+            else:
+                return False
+        else:
+            if a.decimal >= self.decimal:
+                return True
+            else:
+                return False
+
+    def __ge__(self, a):
+        if type(a) != Ratio and type(a) != int:
+            raise TypeError("Please Compare Required Value")
+        elif type == int:
+            if a <= self.decimal:
+                return True
+            else:
+                return False
+        else:
+            if a.decimal <= self.decimal:
+                return True
+            else:
+                return False
+
+
+
 def main():
     print("Init")
     obj = Ratio(2, 6)
-    obj2 = Ratio(1, 2)
-    temp = obj - obj2
-    print(temp)
-    abs(temp)
-    print(temp)
-    round(temp)
-    print(temp)
+    obj2 = Ratio(2, 3)
+    if obj > obj2:
+        print("hello")
 
 
 

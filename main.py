@@ -48,7 +48,8 @@ class Ratio:
         return self.__add__(a)
 
     def __sub__(self, a):
-        return self.__add__(-a)
+        -a
+        return self.__add__(a)
 
     def __rsub__(self, a):
         temp_a = (a*self.b) - (self.a)
@@ -117,6 +118,22 @@ class Ratio:
     def __neg__(self):
         self.a = -self.a
 
+    def __round__(self):
+        temp = self
+        temp.mixed()
+        if (temp.a/temp.b) - temp.mixednum < 0.5:
+            self.a = temp.mixednum
+            self.b = 1
+        else:
+            self.a = temp.mixednum + 1
+            self.b = 1
+
+    def __abs__(self):
+        if str(self)[0] == "-":
+            -self
+        else:
+            pass
+
     def convert(self):
         return (self.a / self.b)
 
@@ -133,8 +150,12 @@ class Ratio:
 def main():
     print("Init")
     obj = Ratio(2, 6)
-    obj2 = Ratio(9, 20)
-    temp = 2 ** obj
+    obj2 = Ratio(1, 2)
+    temp = obj - obj2
+    print(temp)
+    abs(temp)
+    print(temp)
+    round(temp)
     print(temp)
 
 

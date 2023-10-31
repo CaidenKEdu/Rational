@@ -8,7 +8,7 @@ class Ratio:
             self.b = b
             self.decimal = self.a / self.b
             self.mixednum = 0
-        elif type(a) != int or type(b) != int:
+        elif type(a) != int and type(a) != float or type(b) != int:
             raise ValueError("Enter Integers Only")
         else:
             self.a = a
@@ -105,9 +105,13 @@ class Ratio:
         return (a**self.a)**(1/self.b)
 
     def lowest_terms(self):
-        temp = gcd(self.a, self.b)
-        self.a //= temp
-        self.b //= temp
+        temp = self.a
+        if str(temp).find('.') == -1:
+            temp = gcd(self.a, self.b)
+            self.a //= temp
+            self.b //= temp
+        else:
+            self.from_float()
 
     def __invert__(self):
         temp = self.a
@@ -234,6 +238,16 @@ class Ratio:
             else:
                 return False
 
+    def from_float(self):
+        temp = self.a
+        temp = str(temp)
+        temp = temp[::-1].find('.')
+        self.a = int(self.a * (10**temp))
+        self.b = 10**temp
+        self.lowest_terms()
+
+
+
 
 
 def main():
@@ -242,6 +256,9 @@ def main():
     obj2 = Ratio(2, 3)
     if obj > obj2:
         print("hello")
+    num = 2.42
+    numRatio = Ratio(num)
+    print(numRatio)
 
 
 

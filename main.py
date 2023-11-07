@@ -1,4 +1,4 @@
-from math import gcd
+from math import gcd, floor
 class Ratio:
     def __init__(self, a=1, b=1):
         if b == 0:
@@ -239,15 +239,17 @@ class Ratio:
                 return False
 
     def from_float(self):
-        temp = self.a
-        temp = str(temp)
-        temp = temp[::-1].find('.')
-        self.a = int(self.a * (10**temp))
+        temp2 = self.a
+        temp2 = floor(temp2)
+        temp = 0
+        while self.a != temp2:
+            self.a = self.a * 10
+            temp += 1
+            temp2 = self.a
+            temp2 = floor(temp2)
+        self.a = int(self.a)
         self.b = 10**temp
         self.lowest_terms()
-
-
-
 
 
 def main():
@@ -256,7 +258,7 @@ def main():
     obj2 = Ratio(2, 3)
     if obj > obj2:
         print("hello")
-    num = 2.42
+    num = 1.2
     numRatio = Ratio(num)
     print(numRatio)
 
